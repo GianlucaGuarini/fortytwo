@@ -15,7 +15,16 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   exposed-modules:     FortyTwo
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5,
+                       ansi-terminal >= 0.6.0.0 && <= 0.7.1.1
+  default-language:    Haskell2010
+
+executable             examples
+  main-is:             Main.hs
+  other-modules:       InputExample
+  hs-source-dirs:      examples
+  build-depends:       base >= 4.7 && < 5,
+                       fortytwo
   default-language:    Haskell2010
 
 Test-Suite spec

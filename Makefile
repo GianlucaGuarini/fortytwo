@@ -6,6 +6,9 @@ install:
 test:
 	@ stack test
 
+demo:
+	@ stack exec examples
+
 build:
 	@ stack build
 
@@ -14,4 +17,4 @@ release:
 	@ stack sdist
 	@ stack upload .
 
-.PHONY: install test build release
+.PHONY: install test demo build release
