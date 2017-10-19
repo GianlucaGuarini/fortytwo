@@ -18,14 +18,17 @@ library
                        FortyTwo.Types,
                        FortyTwo.TheAnswerToEverything,
                        FortyTwo.Prompts.Input,
+                       FortyTwo.Prompts.Confirm,
                        FortyTwo.Renderers.Question
   build-depends:       base >= 4.7 && < 5,
+                       text <= 1.2.2.2,
                        ansi-terminal >= 0.6.0.0 && <= 0.7.1.1
   default-language:    Haskell2010
 
 executable             examples
   main-is:             Main.hs
-  other-modules:       InputExample
+  other-modules:       InputExample,
+                       ConfirmExample
   hs-source-dirs:      examples
   build-depends:       base >= 4.7 && < 5,
                        fortytwo
