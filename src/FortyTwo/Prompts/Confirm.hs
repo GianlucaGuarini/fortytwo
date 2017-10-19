@@ -17,7 +17,7 @@ getCleanConfirm :: IO String
 getCleanConfirm = do s <- getChar; return $ normalizeString [s]
 
 -- | Ask a confirm question by default it will be true
--- confirmWithDefault "What is your name?" "The Dude"
+-- confirm "Do you like music?"
 confirm :: String -> IO Bool
 confirm question = do
   putStrLn ""
