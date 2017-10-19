@@ -1,4 +1,4 @@
-module FortyTwo.Renderers.Question (renderQuestion) where
+module FortyTwo.Renderers.Question (renderQuestion, renderMessage) where
 
 import FortyTwo.Types (Message(..))
 import System.Console.ANSI
