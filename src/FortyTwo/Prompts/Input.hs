@@ -7,6 +7,7 @@ module FortyTwo.Prompts.Input
 import FortyTwo.Renderers.Question (renderQuestion)
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 
+-- | Ask a simple input question having a default value
 inputWithDefault :: String -> String -> IO String
 inputWithDefault question defaultAnswer = do
   putStrLn ""
@@ -17,8 +18,13 @@ inputWithDefault question defaultAnswer = do
   cursorUpLine 2
   -- and clear them
   clearFromCursorToScreenEnd
-  renderQuestion question "" answer
-  return answer
+  -- return the default answer if no answer was given
+  if null answer then do
+    renderQuestion question "" defaultAnswer
+    return defaultAnswer
+  else do
+    renderQuestion question "" answer
+    return answer
 
 -- | Simple input question
 input :: String -> IO String
