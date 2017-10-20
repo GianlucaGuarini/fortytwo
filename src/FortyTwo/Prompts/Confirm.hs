@@ -27,7 +27,7 @@ confirmWithDefault question defaultAnswer = do
   cursorUpLine 1
   -- and clear them
   clearFromCursorToScreenEnd
-  if answer == "n" || answer /= "y" && not defaultAnswer then do
+  if answer == "n" || (answer /= "y" && not defaultAnswer) then do
     renderQuestion question "" "no"
     return False
   else do

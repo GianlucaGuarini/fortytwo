@@ -4,7 +4,7 @@ module FortyTwo.Prompts.Input
       input
     ) where
 
-import System.IO
+import System.IO (hFlush, stdout)
 import FortyTwo.Renderers.Question (renderQuestion)
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 
