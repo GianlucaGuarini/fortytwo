@@ -4,6 +4,7 @@ module FortyTwo.Prompts.Input
       input
     ) where
 
+import System.IO
 import FortyTwo.Renderers.Question (renderQuestion)
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 
@@ -13,10 +14,11 @@ inputWithDefault :: String -> String -> IO String
 inputWithDefault question defaultAnswer = do
   putStrLn ""
   renderQuestion question defaultAnswer ""
-  putStrLn ""
+  putStr " "
+  hFlush stdout
   answer <- getLine
-  -- move up of 2 lines...
-  cursorUpLine 2
+  -- move up of 1 line...
+  cursorUpLine 1
   -- and clear them
   clearFromCursorToScreenEnd
   -- return the default answer if no answer was given

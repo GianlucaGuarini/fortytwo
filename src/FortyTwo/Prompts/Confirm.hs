@@ -2,6 +2,7 @@ module FortyTwo.Prompts.Confirm (confirm, confirmWithDefault) where
 
 import qualified Data.Text as T
 
+import System.IO (hFlush, stdout)
 import FortyTwo.Renderers.Question (renderQuestion)
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 
@@ -19,10 +20,11 @@ confirmWithDefault :: String -> Bool -> IO Bool
 confirmWithDefault question defaultAnswer = do
   putStrLn ""
   renderQuestion question defaultAnswerHumanized ""
-  putStrLn " (y/N)"
+  putStr " (y/N) "
+  hFlush stdout
   answer <- getCleanConfirm
-  -- move up of 2 lines...
-  cursorUpLine 2
+  -- move up of 1 line...
+  cursorUpLine 1
   -- and clear them
   clearFromCursorToScreenEnd
   if answer == "n" || answer /= "y" && not defaultAnswer then do
