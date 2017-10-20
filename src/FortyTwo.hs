@@ -3,7 +3,8 @@ module FortyTwo
       theAnswerToEverything,
       input,
       inputWithDefault,
-      confirm
+      confirm,
+      confirmWithDefault
     ) where
 
 import FortyTwo.Prompts.Input

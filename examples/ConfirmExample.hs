@@ -1,6 +1,8 @@
 module ConfirmExample where
 
-import FortyTwo (confirm)
+import FortyTwo (confirm, confirmWithDefault)
 
 main :: IO Bool
-main = confirm "Do you like music?"
+main = do
+  confirm "Do you like music?"
+  confirmWithDefault "Do you like pop music?" False

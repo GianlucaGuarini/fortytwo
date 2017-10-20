@@ -7,8 +7,7 @@ module FortyTwo.Prompts.Input
 import FortyTwo.Renderers.Question (renderQuestion)
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 
--- | Ask a simple input question having falling back to a default value if no answer
--- | will be provided
+-- | Ask a simple input question falling back to a default value if no answer will be provided
 -- inputWithDefault "What is your name?" "The Dude"
 inputWithDefault :: String -> String -> IO String
 inputWithDefault question defaultAnswer = do
