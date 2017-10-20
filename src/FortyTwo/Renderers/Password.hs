@@ -1,11 +1,8 @@
 module FortyTwo.Renderers.Password (getPassword, hideLetters, passwordHiddenChar) where
 
 import Data.Maybe
+import FortyTwo.Constants (passwordHiddenChar)
 import qualified System.Console.Haskeline as H
-
--- | Char used to hide the password letters
-passwordHiddenChar :: Char
-passwordHiddenChar = '*'
 
 -- | IO event to get the password values hiding them in the UI
 getPassword :: IO String

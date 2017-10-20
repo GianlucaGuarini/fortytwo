@@ -1,8 +1,4 @@
-module FortyTwo.Prompts.Input
-    (
-      inputWithDefault,
-      input
-    ) where
+module FortyTwo.Prompts.Input (inputWithDefault, input) where
 
 import System.IO (hFlush, stdout)
 import FortyTwo.Renderers.Question (renderQuestion)

@@ -16,14 +16,19 @@ library
   hs-source-dirs:      src
   exposed-modules:     FortyTwo,
                        FortyTwo.Types,
+                       FortyTwo.Constants,
+                       FortyTwo.Utils,
                        FortyTwo.TheAnswerToEverything,
                        FortyTwo.Prompts.Input,
                        FortyTwo.Prompts.Confirm,
                        FortyTwo.Prompts.Password,
+                       FortyTwo.Prompts.Select,
                        FortyTwo.Renderers.Password,
-                       FortyTwo.Renderers.Question
+                       FortyTwo.Renderers.Question,
+                       FortyTwo.Renderers.Select
   build-depends:       base >= 4.7 && < 5,
                        text <= 1.2.2.2,
+                       terminfo <= 0.4.1.0,
                        haskeline <= 0.7.4.0,
                        ansi-terminal >= 0.6.0.0 && <= 0.7.1.1
   default-language:    Haskell2010
@@ -32,7 +37,8 @@ executable             examples
   main-is:             Main.hs
   other-modules:       InputExample,
                        ConfirmExample,
-                       PasswordExample
+                       PasswordExample,
+                       SelectExample
   hs-source-dirs:      examples
   build-depends:       base >= 4.7 && < 5,
                        fortytwo

@@ -1,7 +1,4 @@
-module FortyTwo.Prompts.Password
-    (
-      password
-    ) where
+module FortyTwo.Prompts.Password (password) where
 
 import System.IO (hFlush, stdout)
 import FortyTwo.Renderers.Password (getPassword, hideLetters)
