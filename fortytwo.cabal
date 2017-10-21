@@ -49,7 +49,8 @@ Test-Suite spec
   type:              exitcode-stdio-1.0
   default-language:  Haskell2010
   main-is:           Main.hs
-  other-modules:     Specs.Core
+  other-modules:     Specs.Core,
+                     Specs.Select
   hs-source-dirs:    test
   build-depends:     fortytwo,
                      base >=4.9 && <4.10,
