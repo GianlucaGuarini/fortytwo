@@ -1,4 +1,4 @@
-module FortyTwo.Renderers.Password (getPassword, hideLetters, passwordHiddenChar) where
+module FortyTwo.Renderers.Password (getPassword, hideLetters) where
 
 import Data.Maybe
 import FortyTwo.Constants (passwordHiddenChar)

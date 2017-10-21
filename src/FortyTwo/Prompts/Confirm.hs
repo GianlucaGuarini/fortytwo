@@ -3,8 +3,10 @@ module FortyTwo.Prompts.Confirm (confirm, confirmWithDefault) where
 import qualified Data.Text as T
 
 import System.IO (hFlush, stdout)
+import FortyTwo.Renderers.Confirm (renderConfirm)
 import FortyTwo.Renderers.Question (renderQuestion)
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
+import FortyTwo.Utils (clearLines)
 
 -- | Normalize a string transforming it to lowercase and trimming it and getting either n or y
 normalizeString :: String -> String
@@ -20,13 +22,10 @@ confirmWithDefault :: String -> Bool -> IO Bool
 confirmWithDefault question defaultAnswer = do
   putStrLn ""
   renderQuestion question defaultAnswerHumanized ""
-  putStr " (y/N) "
+  renderConfirm
   hFlush stdout
   answer <- getCleanConfirm
-  -- move up of 1 line...
-  cursorUpLine 1
-  -- and clear them
-  clearFromCursorToScreenEnd
+  clearLines 1
   if answer == "n" || (answer /= "y" && not defaultAnswer) then do
     renderQuestion question "" "no"
     return False

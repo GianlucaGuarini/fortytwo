@@ -8,6 +8,6 @@ data Option = Option {
   isSelected :: Bool,
   isFocused :: Bool,
   value :: String
-}
+} deriving (Eq, Show)
 
 type Options = [Option]

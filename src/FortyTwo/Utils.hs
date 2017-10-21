@@ -1,5 +1,6 @@
 module FortyTwo.Utils where
 
+import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 import Data.Maybe
 import System.IO
 import Control.Monad (when)
@@ -19,6 +20,13 @@ noEcho = hSetEcho stdin False
 
 restoreEcho :: IO ()
 restoreEcho = hSetEcho stdin True
+
+clearLines :: Int -> IO()
+clearLines lines' = do
+  -- move up of 1 line...
+  cursorUpLine lines'
+  -- and clear them
+  clearFromCursorToScreenEnd
 
 getKey = reverse <$> getKey' ""
   where

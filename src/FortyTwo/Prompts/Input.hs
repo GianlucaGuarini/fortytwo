@@ -3,6 +3,7 @@ module FortyTwo.Prompts.Input (inputWithDefault, input) where
 import System.IO (hFlush, stdout)
 import FortyTwo.Renderers.Question (renderQuestion)
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
+import FortyTwo.Utils (clearLines)
 
 -- | Ask a simple input question falling back to a default value if no answer will be provided
 -- inputWithDefault "What is your name?" "The Dude"
@@ -13,10 +14,7 @@ inputWithDefault question defaultAnswer = do
   putStr " "
   hFlush stdout
   answer <- getLine
-  -- move up of 1 line...
-  cursorUpLine 1
-  -- and clear them
-  clearFromCursorToScreenEnd
+  clearLines 1
   -- return the default answer if no answer was given
   if null answer then do
     renderQuestion question "" defaultAnswer

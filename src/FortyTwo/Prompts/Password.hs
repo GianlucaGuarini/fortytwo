@@ -4,6 +4,7 @@ import System.IO (hFlush, stdout)
 import FortyTwo.Renderers.Password (getPassword, hideLetters)
 import FortyTwo.Renderers.Question (renderQuestion)
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
+import FortyTwo.Utils (clearLines)
 
 -- | Ask a user password
 -- password "What your secret password?"
@@ -14,9 +15,6 @@ password question = do
   putStr " "
   hFlush stdout
   answer <- getPassword
-  -- move up of 1 line...
-  cursorUpLine 1
-  -- and clear them
-  clearFromCursorToScreenEnd
+  clearLines 1
   renderQuestion question "" $ hideLetters answer
   return answer

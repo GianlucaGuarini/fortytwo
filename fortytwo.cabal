@@ -23,8 +23,9 @@ library
                        FortyTwo.Prompts.Confirm,
                        FortyTwo.Prompts.Password,
                        FortyTwo.Prompts.Select,
-                       FortyTwo.Renderers.Password,
                        FortyTwo.Renderers.Question,
+                       FortyTwo.Renderers.Password,
+                       FortyTwo.Renderers.Confirm,
                        FortyTwo.Renderers.Select
   build-depends:       base >= 4.7 && < 5,
                        text <= 1.2.2.2,
