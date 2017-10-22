@@ -3,6 +3,7 @@ module FortyTwo.Utils where
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 import Data.Maybe
 import System.IO
+import FortyTwo.Constants (emptyString)
 import Control.Monad (when)
 
 noBuffering :: IO()
@@ -28,7 +29,7 @@ clearLines lines' = do
   -- and clear them
   clearFromCursorToScreenEnd
 
-getKey = reverse <$> getKey' ""
+getKey = reverse <$> getKey' emptyString
   where
     getKey' chars = do
       char <- getChar

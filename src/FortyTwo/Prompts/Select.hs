@@ -17,7 +17,7 @@ import FortyTwo.Renderers.Question (renderQuestion)
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 import FortyTwo.Types(Option(..), Options)
 import System.IO (hFlush, stdout)
-import FortyTwo.Utils
+import FortyTwo.Utils (clearLines, noEcho, restoreEcho, noBuffering, restoreBuffering, getKey)
 import Data.Maybe
 import Data.List
 import FortyTwo.Constants
@@ -91,9 +91,9 @@ getOptionsMeta options = (0, length options - 1, getSelectedOptionIndex options)
 -- selectWithDefault "What's your favourite color?" ["Red", "Yellow", "Blue"] "Red"
 selectWithDefault :: String -> [String] -> String -> IO String
 selectWithDefault question options defaultAnswer = do
-  putStrLn ""
-  renderQuestion question defaultAnswer ""
-  putStrLn ""
+  putStrLn emptyString
+  renderQuestion question defaultAnswer emptyString
+  putStrLn emptyString
   hFlush stdout
   noBuffering
   res <- loop $ stringsToOptions options
@@ -103,19 +103,13 @@ selectWithDefault question options defaultAnswer = do
   case res of
     Just x  -> do
       let answer = (!!) options x
-      renderQuestion question "" answer
+      renderQuestion question emptyString answer
       return answer
     -- If no user input will be provided..
     Nothing -> do
-      let answer = (!!) options 0
-      -- let's use the first option available..
-      if null defaultAnswer then do
-        renderQuestion question "" answer
-        return answer
-      -- ..or just the fallback
-      else do
-        renderQuestion question "" defaultAnswer
-        return defaultAnswer
+      -- ..let's return the default answer
+      renderQuestion question emptyString defaultAnswer
+      return defaultAnswer
 
 -- | Select prompt from a list of options
 -- select "What's your favourite color?" ["Red", "Yellow", "Blue"]

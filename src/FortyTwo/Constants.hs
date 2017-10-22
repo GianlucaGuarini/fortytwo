@@ -18,6 +18,9 @@ enterKey = "\n"
 spaceKey :: String
 spaceKey = " "
 
+emptyString :: String
+emptyString = ""
+
 -- | Char used to highlight a select
 selectFocusIcon :: Char
 selectFocusIcon = '❯'

@@ -7,6 +7,7 @@ import FortyTwo.Renderers.Confirm (renderConfirm)
 import FortyTwo.Renderers.Question (renderQuestion)
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 import FortyTwo.Utils (clearLines)
+import FortyTwo.Constants (emptyString)
 
 -- | Normalize a string transforming it to lowercase and trimming it and getting either n or y
 normalizeString :: String -> String
@@ -20,17 +21,17 @@ getCleanConfirm = do s <- getLine; return $ normalizeString s
 -- confirmWithDefault "Do you like music?" True
 confirmWithDefault :: String -> Bool -> IO Bool
 confirmWithDefault question defaultAnswer = do
-  putStrLn ""
-  renderQuestion question defaultAnswerHumanized ""
+  putStrLn emptyString
+  renderQuestion question defaultAnswerHumanized emptyString
   renderConfirm
   hFlush stdout
   answer <- getCleanConfirm
   clearLines 1
   if answer == "n" || (answer /= "y" && not defaultAnswer) then do
-    renderQuestion question "" "no"
+    renderQuestion question emptyString "no"
     return False
   else do
-    renderQuestion question "" "yes"
+    renderQuestion question emptyString "yes"
     return True
   where
     defaultAnswerHumanized = if defaultAnswer then "yes" else "no"
