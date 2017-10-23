@@ -13,10 +13,11 @@ build:
 	@ stack build
 
 release:
-	@ git tag $(VERSION)
-	@ git push --tags
 	@ sed -i '' 's/\(^version:\)[^\n].*/\1'$(VERSION)'/' *.cabal
 	@ stack sdist
 	@ stack upload .
+	@ git commit -m 'v$(VERSION)'
+	@ git tag $(VERSION)
+	@ git push --tags
 
 .PHONY: install test demo build release
