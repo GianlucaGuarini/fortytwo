@@ -8,6 +8,8 @@ import FortyTwo.Utils (clearLines, flush)
 import FortyTwo.Constants (emptyString)
 
 -- | Normalize a string transforming it to lowercase and trimming it and getting either n or y
+-- >>> normalizeString "Yes"
+-- "y"
 normalizeString :: String -> String
 normalizeString s = take 1 $ T.unpack $ T.strip . T.toLower $ T.pack s
 
@@ -16,7 +18,6 @@ getCleanConfirm :: IO String
 getCleanConfirm = do s <- getLine; return $ normalizeString s
 
 -- | Ask a confirm falling back to a default value if no answer will be provided
--- confirmWithDefault "Do you like music?" True
 confirmWithDefault :: String -> Bool -> IO Bool
 confirmWithDefault question defaultAnswer = do
   putStrLn emptyString
@@ -35,6 +36,5 @@ confirmWithDefault question defaultAnswer = do
     defaultAnswerHumanized = if defaultAnswer then "yes" else "no"
 
 -- | Ask a confirm question by default it will be true
--- confirm "Do you like music?"
 confirm :: String -> IO Bool
 confirm question = confirmWithDefault question False

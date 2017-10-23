@@ -1,5 +1,5 @@
 name:                fortytwo
-version:0.0.2
+version:0.0.3
 synopsis:            Interactive terminal prompt
 description:         List of Prompt helpers to pimp the UIs of your haskell programs
 homepage:            https://github.com/gianlucaguarini/fortytwo#readme
@@ -8,7 +8,7 @@ license-file:        LICENSE
 author:              Gianluca Guarini
 maintainer:          gianluca.guarini@gmail.com
 copyright:           Gianlua Guarini
-category:            System
+category:            Prompt
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10

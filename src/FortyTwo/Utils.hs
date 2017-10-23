@@ -41,12 +41,18 @@ map' f = zipWith f [0..]
 filter' :: Eq a => (Int -> a -> Bool) -> [a] -> [a]
 filter' f xs = [x | x <- xs, f (fromJust (elemIndex x xs)) x]
 
+-- | Get the value of any keyboard press
+getKey :: IO String
 getKey = reverse <$> getKey' emptyString
   where
     getKey' chars = do
       char <- getChar
       more <- hReady stdin
       (if more then getKey' else return) (char:chars)
+
+-- | Flush the output buffer
+flush :: IO()
+flush = hFlush stdout
 
 -- | Get useful informations from the options collection, like minVal, maxVal, activeIndex
 getOptionsMeta :: Options -> (Int, Int, Maybe Int)
@@ -66,6 +72,7 @@ focusOption focusedIndex = map' $ \ i o ->
     isSelected = getOptionIsSelected o,
     isFocused = focusedIndex == i
   }
+
 -- | Toggle the isSelected flag for a single option
 toggleFocusedOption :: Int -> Options -> Options
 toggleFocusedOption focusedIndex = map' $ \ i o ->
@@ -80,10 +87,6 @@ toggleFocusedOption focusedIndex = map' $ \ i o ->
 -- | Print a list to comma separated
 toCommaSeparatedString :: [String] -> String
 toCommaSeparatedString = intercalate ", "
-
--- | Flush the output buffer
-flush :: IO()
-flush = hFlush stdout
 
 -- | Get the value of any option
 getOptionValue :: Option -> String
