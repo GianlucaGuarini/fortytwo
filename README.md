@@ -5,7 +5,7 @@ _Interactive terminal prompt_
 [![Build Status][travis-image]][travis-url]
 [![MIT License][license-image]][license-url]
 
-<img src="fortytwo.jpg" width="100%" />
+![fortytwo](https://github.com/GianlucaGuarini/fortytwo/raw/develop/fortytwo.jpg)
 
 ## Installation
 
@@ -15,7 +15,7 @@ cabal install fortytwo
 
 ## Demo
 
-<img src="demo.gif" />
+![Demo](https://github.com/GianlucaGuarini/fortytwo/raw/develop/demo.gif)
 
 ## API
 
