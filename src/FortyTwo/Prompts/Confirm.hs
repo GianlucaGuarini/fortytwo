@@ -37,4 +37,4 @@ confirmWithDefault question defaultAnswer = do
 -- | Ask a confirm question by default it will be true
 -- confirm "Do you like music?"
 confirm :: String -> IO Bool
-confirm question = confirmWithDefault question True
+confirm question = confirmWithDefault question False

@@ -8,9 +8,9 @@ import qualified MultiselectExample
 
 main :: IO()
 main = do
+  InputExample.main
+  ConfirmExample.main
   MultiselectExample.main
   SelectExample.main
   PasswordExample.main
-  InputExample.main
-  ConfirmExample.main
   return ()
