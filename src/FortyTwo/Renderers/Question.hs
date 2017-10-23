@@ -10,15 +10,16 @@ renderMessage messageType message
       setSGR [SetColor Foreground Dull Green]
       putStr "? "
       setSGR [Reset]
-      setSGR [SetColor Foreground Dull White]
+      setSGR [SetConsoleIntensity BoldIntensity]
       putStr message
       setSGR [Reset]
   | messageType == Answer = do
+      setSGR [SetConsoleIntensity BoldIntensity]
       setSGR [SetColor Foreground Dull Cyan]
       putStr $ " " ++ message
       setSGR [Reset]
   | messageType == DefaultAnswer = do
-    setSGR [SetColor Foreground Vivid Yellow]
+    setSGR [SetConsoleIntensity FaintIntensity]
     putStr $ " (" ++ message ++ ")"
     setSGR [Reset]
 
