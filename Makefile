@@ -13,6 +13,8 @@ build:
 	@ stack build
 
 release:
+	@ git tag $(VERSION)
+	@ git push --tags
 	@ sed -i '' 's/\(^version:\)[^\n].*/\1'$(VERSION)'/' *.cabal
 	@ stack sdist
 	@ stack upload .

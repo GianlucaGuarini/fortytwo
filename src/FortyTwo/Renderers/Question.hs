@@ -14,7 +14,6 @@ renderMessage messageType message
       putStr message
       setSGR [Reset]
   | messageType == Answer = do
-      setSGR [SetConsoleIntensity BoldIntensity]
       setSGR [SetColor Foreground Dull Cyan]
       putStr $ " " ++ message
       setSGR [Reset]
