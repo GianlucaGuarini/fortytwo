@@ -2,11 +2,9 @@ module FortyTwo.Prompts.Confirm (confirm, confirmWithDefault) where
 
 import qualified Data.Text as T
 
-import System.IO (hFlush, stdout)
 import FortyTwo.Renderers.Confirm (renderConfirm)
 import FortyTwo.Renderers.Question (renderQuestion)
-import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
-import FortyTwo.Utils (clearLines)
+import FortyTwo.Utils (clearLines, flush)
 import FortyTwo.Constants (emptyString)
 
 -- | Normalize a string transforming it to lowercase and trimming it and getting either n or y
@@ -24,7 +22,7 @@ confirmWithDefault question defaultAnswer = do
   putStrLn emptyString
   renderQuestion question defaultAnswerHumanized emptyString
   renderConfirm
-  hFlush stdout
+  flush
   answer <- getCleanConfirm
   clearLines 1
   if answer == "n" || (answer /= "y" && not defaultAnswer) then do

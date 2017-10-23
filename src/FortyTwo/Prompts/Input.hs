@@ -1,9 +1,7 @@
 module FortyTwo.Prompts.Input (inputWithDefault, input) where
 
-import System.IO (hFlush, stdout)
 import FortyTwo.Renderers.Question (renderQuestion)
-import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
-import FortyTwo.Utils (clearLines)
+import FortyTwo.Utils (clearLines, flush)
 import FortyTwo.Constants (emptyString)
 
 -- | Ask a simple input question falling back to a default value if no answer will be provided
@@ -13,7 +11,7 @@ inputWithDefault question defaultAnswer = do
   putStrLn emptyString
   renderQuestion question defaultAnswer emptyString
   putStr " "
-  hFlush stdout
+  flush
   answer <- getLine
   clearLines 1
   -- return the default answer if no answer was given

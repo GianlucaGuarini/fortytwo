@@ -1,13 +1,13 @@
-module Specs.Select (main) where
+module Specs.Utils (main) where
 
 import Data.Maybe
-import FortyTwo.Prompts.Select
+import FortyTwo.Utils
 import FortyTwo.Types
 import Test.Hspec
 
 main :: SpecWith ()
 main =
-  describe "Prompts.Select" $ do
+  describe "Utils" $ do
     let list = ["one", "two", "three"]
     it "It converts strings to valid options" $ do
       let options = stringsToOptions list
@@ -15,8 +15,8 @@ main =
 
     it "Can update properly an options collection with a defined index" $ do
       let selectedIndex = 1
-      let options = updateOptions selectedIndex $ stringsToOptions list
-      fromJust (getSelectedOptionIndex options) `shouldBe` selectedIndex
+      let options = focusOption selectedIndex $ stringsToOptions list
+      fromJust (getFocusedOptionIndex options) `shouldBe` selectedIndex
 
     it "Return 0 if no option will be selected" $
-        fromMaybe 0 (getSelectedOptionIndex $ stringsToOptions list) `shouldBe` 0
+        fromMaybe 0 (getFocusedOptionIndex $ stringsToOptions list) `shouldBe` 0

@@ -15,7 +15,7 @@ renderOption :: Option -> IO()
 renderOption Option { isSelected, isFocused, value } =
   if isFocused then do
     setSGR [SetColor Foreground Dull Cyan]
-    putStrLn $ unwords [[selectFocusIcon], value]
+    putStrLn $ unwords [[focusIcon], value]
     setSGR [Reset]
   else
     putStrLn $ "  " ++ value

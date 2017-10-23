@@ -23,10 +23,12 @@ library
                        FortyTwo.Prompts.Confirm,
                        FortyTwo.Prompts.Password,
                        FortyTwo.Prompts.Select,
+                       FortyTwo.Prompts.Multiselect,
                        FortyTwo.Renderers.Question,
                        FortyTwo.Renderers.Password,
                        FortyTwo.Renderers.Confirm,
                        FortyTwo.Renderers.Select
+                       FortyTwo.Renderers.Multiselect
   build-depends:       base >= 4.7 && < 5,
                        text <= 1.2.2.2,
                        terminfo <= 0.4.1.0,
@@ -39,7 +41,8 @@ executable             examples
   other-modules:       InputExample,
                        ConfirmExample,
                        PasswordExample,
-                       SelectExample
+                       SelectExample,
+                       MultiselectExample
   hs-source-dirs:      examples
   build-depends:       base >= 4.7 && < 5,
                        fortytwo
@@ -50,7 +53,7 @@ Test-Suite spec
   default-language:  Haskell2010
   main-is:           Main.hs
   other-modules:     Specs.Core,
-                     Specs.Select
+                     Specs.Utils
   hs-source-dirs:    test
   build-depends:     fortytwo,
                      base >=4.9 && <4.10,

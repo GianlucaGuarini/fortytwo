@@ -7,6 +7,11 @@ _Interactive terminal prompt_
 
 <img src="fortytwo.jpg" width="100%" />
 
+
+# Credits
+
+This script is heavily inspired by [survey (golang)](https://github.com/AlecAivazis/survey)
+
 [travis-image]:https://img.shields.io/travis/GianlucaGuarini/fortytwo.svg?style=flat-square
 [travis-url]:https://travis-ci.org/GianlucaGuarini/fortytwo
 
