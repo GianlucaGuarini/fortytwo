@@ -10,22 +10,27 @@ import Data.Maybe (fromJust)
 import FortyTwo.Types(Option(..), Options)
 import FortyTwo.Constants (emptyString)
 
+-- | Disable the stdin stdout output buffering
 noBuffering :: IO()
 noBuffering = do
   hSetBuffering stdin NoBuffering
   hSetBuffering stdout NoBuffering
 
+-- | Enaable the stdin stdout buffering
 restoreBuffering :: IO()
 restoreBuffering = do
   hSetBuffering stdin LineBuffering
   hSetBuffering stdout LineBuffering
 
+-- | Avoid echoing the user input
 noEcho :: IO ()
 noEcho = hSetEcho stdin False
 
+-- | Restore the user input echos
 restoreEcho :: IO ()
 restoreEcho = hSetEcho stdin True
 
+-- | Clear terminal lines from the current cursor position
 clearLines :: Int -> IO()
 clearLines lines' = do
   -- move up of 1 line...

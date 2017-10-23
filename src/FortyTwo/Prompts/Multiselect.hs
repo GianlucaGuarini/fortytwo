@@ -9,7 +9,7 @@ import FortyTwo.Types(Option(..), Options)
 import FortyTwo.Utils
 import FortyTwo.Constants
 
--- | Loop to let the users select an single option
+-- | Loop to let the users select multiple options
 loop :: Options -> IO [Int]
 loop options = do
   noEcho
@@ -29,6 +29,7 @@ handleEvent options key
   | key == enterKey = return $ getSelecteOptionsIndexes options
   | otherwise = loop options
 
+-- | Toggle the isSelected value of a single option element
 toggle :: Options -> (Int, Int, Maybe Int) -> Options
 toggle options (minVal, maxVal, focusedIndex) = case focusedIndex of
   Just x -> toggleFocusedOption x options

@@ -10,4 +10,5 @@ data Option = Option {
   value :: String
 } deriving (Eq, Show)
 
+-- | List of options
 type Options = [Option]
