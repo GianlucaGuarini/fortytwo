@@ -1,16 +1,19 @@
 module FortyTwo.Constants where
 
-keyUp :: String
-keyUp = "\ESC[A"
+upKey :: String
+upKey = "\ESC[A"
 
-keyDown :: String
-keyDown = "\ESC[B"
+downKey :: String
+downKey = "\ESC[B"
 
-keyRight :: String
-keyRight = "\ESC[C"
+rightKey :: String
+rightKey = "\ESC[C"
 
-keyLeft :: String
-keyLeft = "\ESC[D"
+leftKey :: String
+leftKey = "\ESC[D"
+
+delKey :: String
+delKey = "\DEL"
 
 enterKey :: String
 enterKey = "\n"

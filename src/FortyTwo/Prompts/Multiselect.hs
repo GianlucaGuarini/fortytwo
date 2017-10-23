@@ -2,12 +2,11 @@
 
 module FortyTwo.Prompts.Multiselect (multiselect, multiselectWithDefault) where
 
+import System.Console.ANSI (hideCursor, showCursor)
 import FortyTwo.Renderers.Multiselect (renderOptions)
 import FortyTwo.Renderers.Question (renderQuestion)
 import FortyTwo.Types(Option(..), Options)
-import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 import FortyTwo.Utils
-import Data.Maybe
 import FortyTwo.Constants
 
 -- | Loop to let the users select an single option
@@ -24,8 +23,8 @@ loop options = do
 -- | Handle a user event
 handleEvent :: Options -> String -> IO [Int]
 handleEvent options key
-  | key `elem` [keyUp, keyLeft]  = loop $ moveUp options $ getOptionsMeta options
-  | key `elem` [keyDown, keyRight]  = loop $ moveDown options $ getOptionsMeta options
+  | key `elem` [upKey, leftKey]  = loop $ moveUp options $ getOptionsMeta options
+  | key `elem` [downKey, rightKey]  = loop $ moveDown options $ getOptionsMeta options
   | key == spaceKey = loop $ toggle options $ getOptionsMeta options
   | key == enterKey = return $ getSelecteOptionsIndexes options
   | otherwise = loop options
@@ -60,12 +59,12 @@ multiselectWithDefault question options defaultAnswer = do
   putStrLn emptyString
   renderQuestion question (toCommaSeparatedString defaultAnswer) emptyString
   putStrLn emptyString
-  hideCursor'
+  hideCursor
   flush
   noBuffering
   res <- loop $ stringsToOptions options
   restoreBuffering
-  showCursor'
+  showCursor
   clearLines 1
 
   if null res then do

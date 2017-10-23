@@ -2,12 +2,12 @@
 
 module FortyTwo.Prompts.Select (select, selectWithDefault) where
 
+import System.Console.ANSI (hideCursor, showCursor)
 import FortyTwo.Renderers.Select (renderOptions)
 import FortyTwo.Renderers.Question (renderQuestion)
 import FortyTwo.Types(Option(..), Options)
 import FortyTwo.Utils
 import FortyTwo.Constants
-import Data.Maybe
 
 -- | Loop to let the users select an single option
 loop :: Options -> IO (Maybe Int)
@@ -23,8 +23,8 @@ loop options = do
 -- | Handle a user event
 handleEvent :: Options -> String -> IO (Maybe Int)
 handleEvent options key
-  | key `elem` [keyUp, keyLeft]  = loop $ moveUp options $ getOptionsMeta options
-  | key `elem` [keyDown, keyRight]  = loop $ moveDown options $ getOptionsMeta options
+  | key `elem` [upKey, leftKey]  = loop $ moveUp options $ getOptionsMeta options
+  | key `elem` [downKey, rightKey]  = loop $ moveDown options $ getOptionsMeta options
   | key `elem` [enterKey, spaceKey] = return $ getFocusedOptionIndex options
   | otherwise = loop options
 
@@ -53,12 +53,12 @@ selectWithDefault question options defaultAnswer = do
   putStrLn emptyString
   renderQuestion question defaultAnswer emptyString
   putStrLn emptyString
-  hideCursor'
+  hideCursor
   flush
   noBuffering
   res <- loop $ stringsToOptions options
   restoreBuffering
-  showCursor'
+  showCursor
   clearLines 1
 
   case res of
