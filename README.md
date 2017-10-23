@@ -54,7 +54,7 @@ main = confirm "Are you old enough to see this?"
 import FortyTwo (confirmWithDefault)
 
 main :: IO Bool
-main = confirmWithDefault "What's your name?" "Undefined"
+main = confirmWithDefault "Are you old enough to see this?" True
 ```
 
 #### Password
