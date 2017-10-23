@@ -14,19 +14,16 @@ renderOptions = mapM_ renderOption
 -- | Render a single option items
 renderOption :: Option -> IO()
 renderOption Option { isSelected, isFocused, value } = do
-  putStrLn emptyString
-
   if isFocused then do
     setSGR [SetColor Foreground Dull Cyan]
     putStr $ focusIcon : " "
     setSGR [Reset]
   else
     putStr "  "
-
   if isSelected then do
     setSGR [SetColor Foreground Dull Green]
     putStr [selectedIcon]
     setSGR [Reset]
   else putStr [unselectedIcon]
-
   putStr $ " " ++ value
+  putStrLn emptyString

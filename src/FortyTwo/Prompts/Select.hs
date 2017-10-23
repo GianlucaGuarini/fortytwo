@@ -53,10 +53,12 @@ selectWithDefault question options defaultAnswer = do
   putStrLn emptyString
   renderQuestion question defaultAnswer emptyString
   putStrLn emptyString
+  hideCursor'
   flush
   noBuffering
   res <- loop $ stringsToOptions options
   restoreBuffering
+  showCursor'
   clearLines 1
 
   case res of

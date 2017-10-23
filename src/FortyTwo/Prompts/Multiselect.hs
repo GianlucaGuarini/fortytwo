@@ -60,10 +60,12 @@ multiselectWithDefault question options defaultAnswer = do
   putStrLn emptyString
   renderQuestion question (toCommaSeparatedString defaultAnswer) emptyString
   putStrLn emptyString
+  hideCursor'
   flush
   noBuffering
   res <- loop $ stringsToOptions options
   restoreBuffering
+  showCursor'
   clearLines 1
 
   if null res then do

@@ -2,7 +2,7 @@
 
 module FortyTwo.Utils where
 
-import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
+import System.Console.ANSI (cursorUpLine, hideCursor, showCursor, clearFromCursorToScreenEnd)
 import System.IO (hSetBuffering, hFlush, hSetEcho, hReady, stdin, stdout, BufferMode(..))
 import Data.List (findIndex, findIndices, elemIndex, intercalate)
 import Control.Monad (when)
@@ -25,6 +25,12 @@ noEcho = hSetEcho stdin False
 
 restoreEcho :: IO ()
 restoreEcho = hSetEcho stdin True
+
+hideCursor' :: IO ()
+hideCursor' = hideCursor
+
+showCursor' :: IO ()
+showCursor' = showCursor
 
 clearLines :: Int -> IO()
 clearLines lines' = do
