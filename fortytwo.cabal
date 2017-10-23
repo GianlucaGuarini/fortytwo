@@ -1,5 +1,5 @@
 name:                fortytwo
-version:             0.0.1
+version:0.0.2
 synopsis:            Interactive terminal prompt
 homepage:            https://github.com/gianlucaguarini/fortytwo#readme
 license:             MIT
@@ -7,7 +7,7 @@ license-file:        LICENSE
 author:              Gianluca Guarini
 maintainer:          gianluca.guarini@gmail.com
 copyright:           Gianlua Guarini
-category:            Web
+category:            Prompt
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
