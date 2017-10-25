@@ -14,9 +14,10 @@ build:
 	@ stack build
 
 release:
-	@ sed -i '' 's/\(^version:\)[^\n].*/\1'$(VERSION)'/' *.cabal
-	@ stack sdist
-	@ stack upload .
+	#@ sed -i '' 's/\(^version:\)[^\n].*/\1'$(VERSION)'/' *.cabal
+	#@ stack sdist
+	#@ stack upload .
+	@ git add .
 	@ git commit -m 'v$(VERSION)'
 	@ git tag $(VERSION)
 	@ git push --tags
