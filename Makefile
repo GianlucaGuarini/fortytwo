@@ -7,7 +7,8 @@ test:
 	@ stack test
 
 demo:
-	@ stack exec examples
+	@ stack build --flag fortytwo:demos
+	@ stack exec demo
 
 build:
 	@ stack build
