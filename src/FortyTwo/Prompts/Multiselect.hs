@@ -5,7 +5,7 @@ module FortyTwo.Prompts.Multiselect (multiselect, multiselectWithDefault) where
 import System.Console.ANSI (hideCursor, showCursor)
 import FortyTwo.Renderers.Multiselect (renderOptions)
 import FortyTwo.Renderers.Question (renderQuestion)
-import FortyTwo.Types(Option(..), Options)
+import FortyTwo.Types(Options)
 import FortyTwo.Utils
 import FortyTwo.Constants
 
@@ -31,7 +31,7 @@ handleEvent options key
 
 -- | Toggle the isSelected value of a single option element
 toggle :: Options -> (Int, Int, Maybe Int) -> Options
-toggle options (minVal, maxVal, focusedIndex) = case focusedIndex of
+toggle options (_, _, focusedIndex) = case focusedIndex of
   Just x -> toggleFocusedOption x options
   Nothing -> options
 
@@ -72,7 +72,7 @@ multiselectWithDefault question options defaultAnswer = do
     renderQuestion question emptyString (toCommaSeparatedString defaultAnswer)
     return defaultAnswer
   else do
-    let answer = filter' (\ i o -> elem i res) options
+    let answer = filter' (\ i _ -> elem i res) options
     renderQuestion question emptyString (toCommaSeparatedString answer)
     return answer
 

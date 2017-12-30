@@ -4,7 +4,6 @@ module FortyTwo.Renderers.Multiselect (renderOptions, renderOption) where
 
 import FortyTwo.Types (Option(..), Options)
 import System.Console.ANSI
-import Control.Monad (when)
 import FortyTwo.Constants
 
 -- | Render all the options collection

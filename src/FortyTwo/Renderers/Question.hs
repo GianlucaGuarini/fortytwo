@@ -21,6 +21,8 @@ renderMessage messageType message
     setSGR [SetConsoleIntensity FaintIntensity]
     putStr $ " (" ++ message ++ ")"
     setSGR [Reset]
+  | otherwise =
+      putStr message
 
 -- | Print the question message
 renderQuestion :: String -> String -> String -> IO ()

@@ -5,7 +5,7 @@ module FortyTwo.Prompts.Select (select, selectWithDefault) where
 import System.Console.ANSI (hideCursor, showCursor)
 import FortyTwo.Renderers.Select (renderOptions)
 import FortyTwo.Renderers.Question (renderQuestion)
-import FortyTwo.Types(Option(..), Options)
+import FortyTwo.Types(Options)
 import FortyTwo.Utils
 import FortyTwo.Constants
 

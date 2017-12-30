@@ -8,4 +8,4 @@ renderPassword letters = putStr $ hideLetters letters
 
 -- | Hide any string replacing its letters with the passwordHiddenChar
 hideLetters :: String -> String
-hideLetters letters = [passwordHiddenChar | x <- letters]
+hideLetters letters = [passwordHiddenChar | _ <- letters]

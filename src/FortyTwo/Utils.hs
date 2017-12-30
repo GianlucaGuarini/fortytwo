@@ -5,7 +5,6 @@ module FortyTwo.Utils where
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 import System.IO (hSetBuffering, hFlush, hSetEcho, hReady, stdin, stdout, BufferMode(..))
 import Data.List (findIndex, findIndices, elemIndex, intercalate)
-import Control.Monad (when)
 import Control.Applicative ((<$>))
 import Data.Maybe (fromJust)
 import FortyTwo.Types(Option(..), Options)

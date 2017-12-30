@@ -12,7 +12,7 @@ renderOptions = mapM_ renderOption
 
 -- | Render a single option items
 renderOption :: Option -> IO()
-renderOption Option { isSelected, isFocused, value } =
+renderOption Option { isFocused, value } =
   if isFocused then do
     setSGR [SetColor Foreground Dull Cyan]
     putStrLn $ unwords [[focusIcon], value]
