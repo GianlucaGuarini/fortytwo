@@ -3,6 +3,7 @@
 module FortyTwo.Renderers.Multiselect (renderOptions, renderOption) where
 
 import FortyTwo.Types (Option(..), Options)
+import FortyTwo.Utils (addBreakingLinesSpacing)
 import System.Console.ANSI
 import FortyTwo.Constants
 
@@ -24,5 +25,5 @@ renderOption Option { isSelected, isFocused, value } = do
     putStr [selectedIcon]
     setSGR [Reset]
   else putStr [unselectedIcon]
-  putStr $ " " ++ value
+  putStr $ " " ++ addBreakingLinesSpacing "    " value
   putStrLn emptyString

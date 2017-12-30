@@ -1,4 +1,4 @@
-{-# LANGUAGE NamedFieldPuns #-}
+{-# LANGUAGE NamedFieldPuns, OverloadedStrings #-}
 
 module FortyTwo.Utils where
 
@@ -32,9 +32,9 @@ restoreEcho = hSetEcho stdin True
 
 -- | Clear terminal lines from the current cursor position
 clearLines :: Int -> IO()
-clearLines lines' = do
-  -- move up of 1 line...
-  cursorUpLine lines'
+clearLines l = do
+  -- move up of some lines...
+  cursorUpLine l
   -- and clear them
   clearFromCursorToScreenEnd
 
@@ -63,6 +63,10 @@ flush = hFlush stdout
 getOptionsMeta :: Options -> (Int, Int, Maybe Int)
 getOptionsMeta options = (0, length options - 1, getFocusedOptionIndex options)
 
+-- | Get the amount of breaking lines needed to display all the options
+getOptionsLines :: Options -> Int
+getOptionsLines = sum . map (length . lines . getOptionValue)
+
 -- | Convert a string array to
 stringsToOptions :: [String] -> Options
 stringsToOptions options = [
@@ -77,6 +81,19 @@ focusOption focusedIndex = map' $ \ i o ->
     isSelected = getOptionIsSelected o,
     isFocused = focusedIndex == i
   }
+
+-- | Normalise the select/multiselect multi lines adding the spaces to format them properly
+addBreakingLinesSpacing :: String -> String -> String
+addBreakingLinesSpacing separator value =
+  if null multiLines then
+    value
+  else
+    firstLine ++ "\n" ++ unlines (take (length normalisedLines - 1) normalisedLines) ++ last normalisedLines
+  where
+    values = lines value
+    firstLine = head values
+    multiLines = tail values
+    normalisedLines = map (\text -> separator ++ text) multiLines
 
 -- | Toggle the isSelected flag for a single option
 toggleFocusedOption :: Int -> Options -> Options

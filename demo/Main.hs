@@ -13,5 +13,5 @@ main = do
   MultiselectExample.main
   SelectExample.main
   PasswordExample.main
-  print "All done"
+  putStrLn "All done"
   return ()

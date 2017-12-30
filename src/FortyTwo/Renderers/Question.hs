@@ -11,18 +11,20 @@ renderMessage messageType message
       putStr "? "
       setSGR [Reset]
       setSGR [SetConsoleIntensity BoldIntensity]
-      putStr message
+      putStr text
       setSGR [Reset]
   | messageType == Answer = do
       setSGR [SetColor Foreground Dull Cyan]
-      putStr $ " " ++ message
+      putStr $ " " ++ text
       setSGR [Reset]
   | messageType == DefaultAnswer = do
     setSGR [SetConsoleIntensity FaintIntensity]
-    putStr $ " (" ++ message ++ ")"
+    putStr $ " (" ++ text ++ ")"
     setSGR [Reset]
   | otherwise =
-      putStr message
+      putStr text
+    where
+      text = (unwords . lines) message
 
 -- | Print the question message
 renderQuestion :: String -> String -> String -> IO ()

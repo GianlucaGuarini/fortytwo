@@ -15,7 +15,7 @@ loop options = do
   noEcho
   renderOptions options
   key <- getKey
-  clearLines $ length options
+  clearLines $ getOptionsLines options
   res <- handleEvent options key
   restoreEcho
   return res
