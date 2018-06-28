@@ -35,8 +35,8 @@ library
                        FortyTwo.Renderers.Select
                        FortyTwo.Renderers.Multiselect
   build-depends:       base >= 4.7 && < 5,
-                       text <= 1.2.2.2,
-                       ansi-terminal >= 0.6.0.0 && <= 0.7.1.1
+                       text <= 1.3,
+                       ansi-terminal >= 0.6.0.0 && <= 0.9
   default-language:    Haskell2010
 
 executable             demo
@@ -63,8 +63,8 @@ Test-Suite spec
                      Specs.Utils
   hs-source-dirs:    test
   build-depends:     fortytwo,
-                     base >=4.9 && <4.10,
-                     process >=1.4 && <1.5,
+                     base >=4.9 && <5,
+                     process >=1.4 && <1.7,
                      async >=2.1 && <2.2,
                      hspec >= 2.2
 
