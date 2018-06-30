@@ -73,7 +73,7 @@ Select prompt letting users decide between one of many possible answers. It will
 ```hs
 import FortyTwo (select)
 
-main :: IO Bool
+main :: IO String
 main = select
          "What's your favourite color?"
          ["Red", "Yellow", "Blue"]
@@ -83,7 +83,7 @@ main = select
 ```hs
 import FortyTwo (selectWithDefault)
 
-main :: IO Bool
+main :: IO String
 main = selectWithDefault
          "What's your favourite color?"
          ["Red", "Yellow", "Blue"]
@@ -96,7 +96,7 @@ Multiselect prompt letting users decide between multiple possible choices. It wi
 ```hs
 import FortyTwo (multiselect)
 
-main :: IO Bool
+main :: IO [String]
 main = multiselect
          "What are your favourite films?"
          ["Titanic", "Matrix", "The Gladiator"]
@@ -106,7 +106,7 @@ main = multiselect
 ```hs
 import FortyTwo (multiselectWithDefault)
 
-main :: IO Bool
+main :: IO [String]
 main = multiselectWithDefault
          "What are your favourite films?"
          ["Titanic", "Matrix", "The Gladiator"]
