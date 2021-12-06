@@ -36,7 +36,7 @@ library
                        FortyTwo.Renderers.Multiselect
   build-depends:       base >= 4.7 && < 5,
                        text <= 1.3,
-                       ansi-terminal >= 0.6.0.0 && <= 0.8.2
+                       ansi-terminal >= 0.6.0.0 && <= 0.12
   default-language:    Haskell2010
 
 executable             demo
