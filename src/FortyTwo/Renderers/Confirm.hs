@@ -4,5 +4,8 @@ module FortyTwo.Renderers.Confirm
     ) where
 
 -- | Render the helper text
-renderConfirm :: IO ()
-renderConfirm = putStr " (y/N) "
+renderConfirm :: Bool -> IO ()
+renderConfirm defaultAnswer = putStr $ " (" ++ msg ++ ") "
+  where
+    msg | defaultAnswer = "Y/n"
+        | otherwise = "y/N"

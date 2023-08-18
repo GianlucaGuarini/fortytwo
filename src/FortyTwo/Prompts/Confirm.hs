@@ -22,7 +22,7 @@ confirmWithDefault :: String -> Bool -> IO Bool
 confirmWithDefault question defaultAnswer = do
   putStrLn emptyString
   renderQuestion question defaultAnswerHumanized emptyString
-  renderConfirm
+  renderConfirm defaultAnswer
   flush
   answer <- getCleanConfirm
   clearLines 1
