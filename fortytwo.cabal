@@ -1,5 +1,5 @@
 name:                fortytwo
-version:1.0.6
+version:             1.0.6
 synopsis:            Interactive terminal prompt
 description:         List of Prompt helpers to pimp the UIs of your haskell programs
 homepage:            https://github.com/gianlucaguarini/fortytwo#readme
@@ -35,8 +35,8 @@ library
                        FortyTwo.Renderers.Select
                        FortyTwo.Renderers.Multiselect
   build-depends:       base >= 4.7 && < 5,
-                       text <= 1.3,
-                       ansi-terminal >= 0.6.0.0 && <= 0.12
+                       text < 2.1,
+                       ansi-terminal >= 0.6.0.0 && < 1.1
   default-language:    Haskell2010
 
 executable             demo
