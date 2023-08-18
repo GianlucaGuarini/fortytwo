@@ -2,6 +2,8 @@
 
 module FortyTwo.Prompts.Multiselect (multiselect, multiselectWithDefault) where
 
+import Control.Monad.IO.Class
+
 import System.Console.ANSI (hideCursor, showCursor)
 import FortyTwo.Renderers.Multiselect (renderOptions)
 import FortyTwo.Renderers.Question (renderQuestion)
@@ -55,8 +57,8 @@ moveDown options (minVal, maxVal, focusedIndex) = case focusedIndex of
 
 -- | Multi Select prompt, falling back to a default list of values if no answer will be provided
 -- multiselectWithDefault "What's your favourite color?" ["Red", "Yellow", "Blue"] ["Red", "Blue"]
-multiselectWithDefault :: String -> [String] -> [String] -> IO [String]
-multiselectWithDefault question options defaultAnswer = do
+multiselectWithDefault :: MonadIO m => String -> [String] -> [String] -> m [String]
+multiselectWithDefault question options defaultAnswer = liftIO $ do
   putStrLn emptyString
   renderQuestion question (toCommaSeparatedString defaultAnswer) emptyString
   putStrLn emptyString
@@ -78,5 +80,5 @@ multiselectWithDefault question options defaultAnswer = do
 
 -- | Multi Select prompt
 -- multiselect "What's your favourite color?" ["Red", "Yellow", "Blue"]
-multiselect :: String -> [String] -> IO [String]
+multiselect :: MonadIO m => String -> [String] -> m [String]
 multiselect question options = multiselectWithDefault question options []

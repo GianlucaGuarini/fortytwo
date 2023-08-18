@@ -2,6 +2,8 @@
 
 module FortyTwo.Utils where
 
+import Control.Monad.IO.Class
+
 import System.Console.ANSI (cursorUpLine, clearFromCursorToScreenEnd)
 import System.IO (hSetBuffering, hFlush, hSetEcho, hReady, stdin, stdout, BufferMode(..))
 import Data.List (findIndex, findIndices, elemIndex, intercalate)
@@ -11,28 +13,28 @@ import FortyTwo.Types(Option(..), Options)
 import FortyTwo.Constants (emptyString)
 
 -- | Disable the stdin stdout output buffering
-noBuffering :: IO()
-noBuffering = do
+noBuffering :: MonadIO m => m ()
+noBuffering = liftIO $ do
   hSetBuffering stdin NoBuffering
   hSetBuffering stdout NoBuffering
 
 -- | Enaable the stdin stdout buffering
-restoreBuffering :: IO()
-restoreBuffering = do
+restoreBuffering :: MonadIO m => m ()
+restoreBuffering = liftIO $ do
   hSetBuffering stdin LineBuffering
   hSetBuffering stdout LineBuffering
 
 -- | Avoid echoing the user input
-noEcho :: IO ()
-noEcho = hSetEcho stdin False
+noEcho :: MonadIO m => m ()
+noEcho = liftIO $ hSetEcho stdin False
 
 -- | Restore the user input echos
-restoreEcho :: IO ()
-restoreEcho = hSetEcho stdin True
+restoreEcho :: MonadIO m => m ()
+restoreEcho = liftIO $ hSetEcho stdin True
 
 -- | Clear terminal lines from the current cursor position
-clearLines :: Int -> IO()
-clearLines l = do
+clearLines :: MonadIO m => Int -> m ()
+clearLines l = liftIO $ do
   -- move up of some lines...
   cursorUpLine l
   -- and clear them
