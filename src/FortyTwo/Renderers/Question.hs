@@ -1,33 +1,35 @@
 module FortyTwo.Renderers.Question (renderQuestion, renderMessage) where
 
+import Control.Monad.IO.Class
+
 import FortyTwo.Types (Message(..))
 import System.Console.ANSI
 
 -- | Print any message depending on its type
-renderMessage :: Message -> String -> IO()
+renderMessage :: MonadIO m => Message -> String -> m ()
 renderMessage messageType message
-  | messageType == Question = do
+  | messageType == Question = liftIO $ do
       setSGR [SetColor Foreground Dull Green]
       putStr "? "
       setSGR [Reset]
       setSGR [SetConsoleIntensity BoldIntensity]
       putStr text
       setSGR [Reset]
-  | messageType == Answer = do
+  | messageType == Answer = liftIO $ do
       setSGR [SetColor Foreground Dull Cyan]
       putStr $ " " ++ text
       setSGR [Reset]
-  | messageType == DefaultAnswer = do
+  | messageType == DefaultAnswer = liftIO $ do
     setSGR [SetConsoleIntensity FaintIntensity]
     putStr $ " (" ++ text ++ ")"
     setSGR [Reset]
   | otherwise =
-      putStr text
+      liftIO $ putStr text
     where
       text = (unwords . lines) message
 
 -- | Print the question message
-renderQuestion :: String -> String -> String -> IO ()
+renderQuestion :: MonadIO m => String -> String -> String -> m ()
 renderQuestion question defaultAnswer answer
   | hasDefaultAnswer && hasAnswer = do
       renderMessage Question question

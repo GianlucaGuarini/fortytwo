@@ -2,18 +2,20 @@
 
 module FortyTwo.Renderers.Select (renderOptions, renderOption) where
 
+import Control.Monad.IO.Class
+
 import FortyTwo.Types (Option(..), Options)
 import System.Console.ANSI
 import FortyTwo.Utils (addBreakingLinesSpacing)
 import FortyTwo.Constants
 
 -- | Render all the options collection
-renderOptions :: Options -> IO ()
+renderOptions :: MonadIO m => Options -> m ()
 renderOptions = mapM_ renderOption
 
 -- | Render a single option items
-renderOption :: Option -> IO()
-renderOption Option { isFocused, value } =
+renderOption :: MonadIO m => Option -> m ()
+renderOption Option { isFocused, value } = liftIO $ do
   if isFocused then do
     setSGR [SetColor Foreground Dull Cyan]
     putStrLn $ unwords [[focusIcon], text]

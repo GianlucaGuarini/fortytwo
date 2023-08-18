@@ -1,5 +1,6 @@
 module FortyTwo.Prompts.Confirm (confirm, confirmWithDefault) where
 
+import Control.Monad.IO.Class
 import qualified Data.Text as T
 
 import FortyTwo.Renderers.Confirm (renderConfirm)
@@ -14,12 +15,12 @@ normalizeString :: String -> String
 normalizeString s = take 1 $ T.unpack $ T.strip . T.toLower $ T.pack s
 
 -- | Get a clean user input string
-getCleanConfirm :: IO String
-getCleanConfirm = do s <- getLine; return $ normalizeString s
+getCleanConfirm :: MonadIO m => m String
+getCleanConfirm = do s <- liftIO getLine; return $ normalizeString s
 
 -- | Ask a confirm falling back to a default value if no answer will be provided
-confirmWithDefault :: String -> Bool -> IO Bool
-confirmWithDefault question defaultAnswer = do
+confirmWithDefault :: MonadIO m => String -> Bool -> m Bool
+confirmWithDefault question defaultAnswer = liftIO $ do
   putStrLn emptyString
   renderQuestion question defaultAnswerHumanized emptyString
   renderConfirm defaultAnswer
@@ -36,5 +37,5 @@ confirmWithDefault question defaultAnswer = do
     defaultAnswerHumanized = if defaultAnswer then "yes" else "no"
 
 -- | Ask a confirm question by default it will be true
-confirm :: String -> IO Bool
+confirm :: MonadIO m => String -> m Bool
 confirm question = confirmWithDefault question False

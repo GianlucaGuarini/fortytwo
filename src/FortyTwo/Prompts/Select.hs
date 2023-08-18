@@ -2,6 +2,8 @@
 
 module FortyTwo.Prompts.Select (select, selectWithDefault) where
 
+import Control.Monad.IO.Class
+
 import System.Console.ANSI (hideCursor, showCursor)
 import FortyTwo.Renderers.Select (renderOptions)
 import FortyTwo.Renderers.Question (renderQuestion)
@@ -48,8 +50,8 @@ moveDown options (minVal, maxVal, focusedIndex) = case focusedIndex of
 
 -- | Select prompt from a list of options falling back to a default value if no answer will be provided
 -- selectWithDefault "What's your favourite color?" ["Red", "Yellow", "Blue"] "Red"
-selectWithDefault :: String -> [String] -> String -> IO String
-selectWithDefault question options defaultAnswer = do
+selectWithDefault :: MonadIO m => String -> [String] -> String -> m String
+selectWithDefault question options defaultAnswer = liftIO $ do
   putStrLn emptyString
   renderQuestion question defaultAnswer emptyString
   putStrLn emptyString
@@ -74,5 +76,5 @@ selectWithDefault question options defaultAnswer = do
 
 -- | Select prompt from a list of options
 -- select "What's your favourite color?" ["Red", "Yellow", "Blue"]
-select :: String -> [String] -> IO String
+select :: MonadIO m => String -> [String] -> m String
 select question options = selectWithDefault question options emptyString

@@ -1,13 +1,15 @@
 module FortyTwo.Prompts.Input (inputWithDefault, input) where
 
+import Control.Monad.IO.Class
+
 import FortyTwo.Renderers.Question (renderQuestion)
 import FortyTwo.Utils (clearLines, flush)
 import FortyTwo.Constants (emptyString)
 
 -- | Ask a simple input question falling back to a default value if no answer will be provided
 -- inputWithDefault "What is your name?" "The Dude"
-inputWithDefault :: String -> String -> IO String
-inputWithDefault question defaultAnswer = do
+inputWithDefault :: MonadIO m => String -> String -> m String
+inputWithDefault question defaultAnswer = liftIO $ do
   putStrLn emptyString
   renderQuestion question defaultAnswer emptyString
   putStr " "
@@ -24,5 +26,5 @@ inputWithDefault question defaultAnswer = do
 
 -- | Simple input question
 -- input "What is your name?"
-input :: String -> IO String
+input :: MonadIO m => String -> m String
 input question = inputWithDefault question emptyString

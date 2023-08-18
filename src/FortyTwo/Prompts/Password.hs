@@ -1,5 +1,7 @@
 module FortyTwo.Prompts.Password (password) where
 
+import Control.Monad.IO.Class
+
 import System.Console.ANSI (cursorBackward, clearFromCursorToScreenEnd, setCursorColumn, clearFromCursorToLineEnd)
 import Control.Monad (unless)
 import FortyTwo.Renderers.Password (renderPassword, hideLetters)
@@ -9,8 +11,8 @@ import FortyTwo.Utils
 
 -- | Ask a user password
 -- password "What your secret password?"
-password :: String -> IO String
-password question = do
+password :: MonadIO m => String -> m String
+password question = liftIO $ do
   putStrLn emptyString
   renderQuestion question emptyString emptyString
   putStr " "
@@ -43,7 +45,7 @@ loop pass = do
   return res
 
 -- | Handle a user event
-handleEvent :: String -> String -> IO String
+handleEvent ::String -> String -> IO String
 handleEvent pass key
   | key == enterKey = return pass
   | key == delKey =
