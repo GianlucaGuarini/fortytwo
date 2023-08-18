@@ -2,7 +2,7 @@
 
 _Interactive terminal prompt_
 
-[![Build Status][travis-image]][travis-url]
+[![Build Status][ci-image]][ci-url]
 [![MIT License][license-image]][license-url]
 
 ![fortytwo](https://github.com/GianlucaGuarini/fortytwo/raw/develop/fortytwo.jpg)
@@ -117,8 +117,8 @@ main = multiselectWithDefault
 
 This script is heavily inspired by [survey (golang)](https://github.com/AlecAivazis/survey)
 
-[travis-image]:https://img.shields.io/travis/GianlucaGuarini/fortytwo.svg?style=flat-square
-[travis-url]:https://travis-ci.org/GianlucaGuarini/fortytwo
+[ci-image]: https://img.shields.io/github/actions/workflow/status/GianlucaGuarini/fortytwo/ci.yml?style=flat-square
+[ci-url]: https://github.com/GianlucaGuarini/fortytwo/actions
 
 [license-image]:http://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
 [license-url]:LICENSE

@@ -4,10 +4,10 @@ synopsis:            Interactive terminal prompt
 description:         List of Prompt helpers to pimp the UIs of your haskell programs
 homepage:            https://github.com/gianlucaguarini/fortytwo#readme
 license:             MIT
-license-file:        LICENSE
+license-file:         LICENSE
 author:              Gianluca Guarini
 maintainer:          gianluca.guarini@gmail.com
-copyright:           Gianlua Guarini
+copyright:           Gianluca Guarini
 category:            Prompt
 build-type:          Simple
 extra-source-files:  README.md
