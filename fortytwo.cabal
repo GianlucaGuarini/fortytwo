@@ -1,5 +1,5 @@
 name:                fortytwo
-version:1.0.7
+version:2.0.0
 synopsis:            Interactive terminal prompt
 description:         List of Prompt helpers to pimp the UIs of your haskell programs
 homepage:            https://github.com/gianlucaguarini/fortytwo#readme
